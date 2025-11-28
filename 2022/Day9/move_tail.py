@@ -1,5 +1,6 @@
 from grid import Grid
 
+
 def move_tail(grid: Grid, tail_idx: int):
     prev = grid.head if tail_idx == 0 else grid.tail[tail_idx - 1]
     x = grid.tail[tail_idx].x

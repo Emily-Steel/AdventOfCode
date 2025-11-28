@@ -1,5 +1,6 @@
 from collections import deque
 
+
 def get_index():
     with open("input.txt", "r") as data:
         message = data.read()
@@ -19,5 +20,6 @@ def get_index():
             if len(set(window)) == len(window):
                 return i
     return -1
+
 
 print(get_index())

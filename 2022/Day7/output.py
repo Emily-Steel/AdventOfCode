@@ -1,4 +1,5 @@
-from fs_parser import FSParser, FSNode
+from fs_parser import FSNode, FSParser
+
 
 class OutputParser(FSParser):
     def __init__(self, rootNode: FSNode):

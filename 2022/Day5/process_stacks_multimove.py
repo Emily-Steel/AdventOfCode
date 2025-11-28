@@ -1,19 +1,19 @@
-from typing import List
-from queue import LifoQueue as Queue
 from collections import deque
 from itertools import repeat
+from queue import LifoQueue as Queue
+from typing import List
 
-class StateMachine():
-    def enter(self, crates: List[Queue]):
-        ...
 
-    def process(self, row: str):
-        ...
+class StateMachine:
+    def enter(self, crates: List[Queue]): ...
 
-    def exit(self) -> List[Queue]:
-        ...
+    def process(self, row: str): ...
+
+    def exit(self) -> List[Queue]: ...
+
 
 state_transition: StateMachine | None = None
+
 
 class GatherCrates(StateMachine):
     def __init__(self):
@@ -58,7 +58,9 @@ class ProcessMoves(StateMachine):
     def exit(self) -> List[Queue]:
         return self.stacks
 
+
 row_processor: StateMachine = GatherCrates()
+
 
 def print_stacks(stacks: List[Queue]):
     for x in range(3):
@@ -68,6 +70,7 @@ def print_stacks(stacks: List[Queue]):
             else:
                 print(stack.get(), end=" ")
         print()
+
 
 with open("input.txt", "r") as rows:
     for row in rows.readlines():

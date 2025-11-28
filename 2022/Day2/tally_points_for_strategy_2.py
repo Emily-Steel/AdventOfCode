@@ -1,12 +1,14 @@
 def name_for_shape_points(shape_points: int):
     return ["Unknown", "Rock", "Paper", "Scissors"][shape_points]
 
+
 def points_for_shape(shape: str):
     return {
         "A": 1,
         "B": 2,
         "C": 3,
     }[shape]
+
 
 def which_shape_to_get_outcome(their_shape: str, outcome: str):
     if outcome == "Y":
@@ -23,6 +25,7 @@ def which_shape_to_get_outcome(their_shape: str, outcome: str):
         "C": "A",
     }[their_shape]
 
+
 def my_score_for_round(their_shape, my_shape):
     their_points = points_for_shape(their_shape)
     my_points = points_for_shape(my_shape)
@@ -33,14 +36,16 @@ def my_score_for_round(their_shape, my_shape):
         my_score += 6
     return my_score
 
+
 def narrate_the_round(their_shape: str, my_shape: str, target_outcome: str, round_score: int):
     their_points = points_for_shape(their_shape)
     my_points = points_for_shape(my_shape)
     print(f"---- ROUND {round_number} ----")
     print(f" Them: {name_for_shape_points(their_points)} {their_shape}({their_points})")
     print(f" Me: {name_for_shape_points(my_points)} {my_shape}({my_points})")
-    print(f"")
+    print("")
     print(f" Resulting score: {round_score}")
+
 
 total_score = 0
 round_number = 0

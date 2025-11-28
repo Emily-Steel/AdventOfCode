@@ -1,11 +1,13 @@
 from dataclasses import dataclass
 from typing import List
 
+
 @dataclass
 class GraphNode:
     value: int
     distance_from_goal: int
     links: List["GraphNode"]
+
 
 def parse_input(file_name: str) -> List[List[GraphNode]]:
     nodes = []

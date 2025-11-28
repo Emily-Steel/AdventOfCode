@@ -1,8 +1,8 @@
-from node import FSNode
-from command import CommandParser
-from output import OutputParser
-
 from typing import List
+
+from command import CommandParser
+from node import FSNode
+from output import OutputParser
 
 root = FSNode("/", None, [], 0)
 cwd = root
@@ -19,6 +19,7 @@ with open("input.txt", "r") as commands:
 
 root.print_tree()
 
+
 def rec_detect_large_folders(cursor: FSNode) -> List[FSNode]:
     detected = []
     if cursor.size <= 100000 and len(cursor.children) > 0:
@@ -26,6 +27,7 @@ def rec_detect_large_folders(cursor: FSNode) -> List[FSNode]:
     for child in cursor.children:
         detected = detected + rec_detect_large_folders(child)
     return detected
+
 
 detected = rec_detect_large_folders(root)
 for x in detected:

@@ -1,6 +1,7 @@
 from typing import List
 
-class DepthWindow():
+
+class DepthWindow:
     def __init__(self, window_size: int = 3):
         self.data: List[int] = []
         self.window_size: int = window_size
@@ -15,6 +16,7 @@ class DepthWindow():
         self.data.append(depth)
         new_window_sum = old_window_sum - popped_value + depth
         self.did_depth_increase = new_window_sum > old_window_sum
+
 
 depth_window = DepthWindow()
 depth_increases = 0

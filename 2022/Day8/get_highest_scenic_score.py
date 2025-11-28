@@ -1,9 +1,11 @@
 from dataclasses import dataclass
 from typing import List
 
+
 @dataclass
 class Tree:
     height: int
+
 
 forest: List[Tree] = []
 
@@ -22,13 +24,14 @@ def calculate_scenic_score(start_x, start_y, step_x, step_y):
     our_height = forest[y][x].height
     visible_trees = 0
     while x >= 0 and x < len(forest[0]) and y >= 0 and y < len(forest):
-        if (x != start_x or y != start_y):
+        if x != start_x or y != start_y:
             visible_trees += 1
             if forest[y][x].height >= our_height:
                 break
         x += step_x
         y += step_y
     return visible_trees
+
 
 highest_scenic_score = 0
 

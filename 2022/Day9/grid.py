@@ -1,15 +1,17 @@
-from typing import Set, Tuple, List
 from dataclasses import dataclass
+from typing import List, Set
+
 
 @dataclass
-class Coord():
+class Coord:
     x: int = 0
     y: int = 0
 
     def __hash__(self):
         return (self.x, self.y).__hash__()
 
-class Grid():
+
+class Grid:
     head: Coord
     tail: List[Coord]
 

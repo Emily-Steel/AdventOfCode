@@ -1,10 +1,12 @@
 from dataclasses import dataclass
 from typing import List
 
+
 @dataclass
 class Tree:
     height: int
     visible: bool
+
 
 forest: List[Tree] = []
 

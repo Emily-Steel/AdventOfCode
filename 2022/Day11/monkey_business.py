@@ -8,10 +8,19 @@
 from collections import deque
 from dataclasses import dataclass
 from typing import Callable, List
-from monkey_parse import *
+
+from monkey_parse import (
+    parse_false,
+    parse_monkey_num,
+    parse_operation,
+    parse_starting_items,
+    parse_test,
+    parse_true,
+)
+
 
 @dataclass
-class Monkey():
+class Monkey:
     id: int
     inventory: deque[int]
     operation: Callable[[int], int]
@@ -19,6 +28,7 @@ class Monkey():
     pass_when_true: int
     pass_when_false: int
     total_inspections: int = 0
+
 
 monkeys: List[Monkey] = []
 with open("input.txt", "r") as rows:
@@ -47,7 +57,7 @@ for round_number in range(20):
             monkeys[target_monkey].inventory.append(item)
     print(f"After round {round_number}:")
     for monkey in monkeys:
-        inv = ', '.join([str(x) for x in monkey.inventory])
+        inv = ", ".join([str(x) for x in monkey.inventory])
         print(f"Monkey {monkey.id}: {inv}")
     print()
 

@@ -1,15 +1,17 @@
 from __future__ import annotations
+
 from dataclasses import dataclass
 from typing import List
 
+
 @dataclass
-class FSNode():
+class FSNode:
     name: str
-    parent: 'FSNode'
-    children: List['FSNode']
+    parent: "FSNode"
+    children: List["FSNode"]
     size: int
 
-    def getChild(self, name: str) -> 'FSNode' | None:
+    def getChild(self, name: str) -> "FSNode" | None:
         return next(filter(lambda x: x.name == name, self.children), None)
 
     def hasChild(self, name: str) -> bool:

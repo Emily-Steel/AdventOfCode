@@ -1,4 +1,5 @@
-from fs_parser import FSParser, FSNode
+from fs_parser import FSNode, FSParser
+
 
 class CommandParser(FSParser):
     def __init__(self, rootNode: FSNode):
@@ -6,9 +7,9 @@ class CommandParser(FSParser):
 
     def parse(self, data: str, cwd: FSNode) -> FSNode | None:
         _, *words = data.split()
-        if words[0] == 'cd':
+        if words[0] == "cd":
             return self.cd(words[1], cwd)
-        if words[0] == 'ls':
+        if words[0] == "ls":
             return self.ls()
         return None
 

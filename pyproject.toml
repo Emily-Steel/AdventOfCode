@@ -1,0 +1,36 @@
+[project]
+name = "advent-of-code"
+version = "2025.0.0"
+description = "Advent of Code solutions"
+requires-python = ">=3.14"
+
+[dependency-groups]
+dev = [
+    "ruff>=0.8.0",
+    "pytest>=8.0.0",
+]
+
+[tool.ruff]
+line-length = 180
+target-version = "py314"
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+]
+ignore = [
+    "E501",  # line too long (handled by formatter)
+]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.pytest.ini_options]
+# Find test files anywhere in the repo, colocated with code
+testpaths = ["."]
+python_files = "test_*.py"
+python_functions = "test_*"

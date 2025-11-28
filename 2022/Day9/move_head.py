@@ -1,5 +1,6 @@
 from grid import Grid
 
+
 def move_head(grid: Grid, direction: str):
     x_step, y_step = {
         "U": (0, 1),

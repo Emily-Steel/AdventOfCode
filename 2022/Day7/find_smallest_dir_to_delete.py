@@ -1,8 +1,8 @@
-from node import FSNode
-from command import CommandParser
-from output import OutputParser
-
 from typing import List
+
+from command import CommandParser
+from node import FSNode
+from output import OutputParser
 
 root = FSNode("/", None, [], 0)
 cwd = root
@@ -23,6 +23,7 @@ free_space = 70000000 - root.size
 needed_space = 30000000
 space_to_free = needed_space - free_space
 
+
 def rec_detect_suitable_folders(cursor: FSNode) -> List[FSNode]:
     detected = []
     if cursor.size >= space_to_free and len(cursor.children) > 0:
@@ -30,6 +31,7 @@ def rec_detect_suitable_folders(cursor: FSNode) -> List[FSNode]:
     for child in cursor.children:
         detected = detected + rec_detect_suitable_folders(child)
     return detected
+
 
 smallest_suitable = min([x.size for x in rec_detect_suitable_folders(root)])
 

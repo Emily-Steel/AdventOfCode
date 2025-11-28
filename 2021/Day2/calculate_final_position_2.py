@@ -1,4 +1,4 @@
-class Submarine():
+class Submarine:
     def __init__(self):
         self.x = 0
         self.y = 0
@@ -24,6 +24,7 @@ class Submarine():
 
     def position_code(self) -> int:
         return self.x * self.y
+
 
 submarine = Submarine()
 with open("input.txt", "r") as rows:

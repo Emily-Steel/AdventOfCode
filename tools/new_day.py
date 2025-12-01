@@ -70,12 +70,21 @@ def create_day_directory(day: int):
     update_env_file(env_path, day)
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: python new_day.py <day_number>")
+    if len(sys.argv) > 2:
+        print("Usage: python new_day.py [<day_number>]")
         sys.exit(1)
     
     try:
-        day = int(sys.argv[1])
+        if (len(sys.argv) == 1):
+            day_str = os.getenv('AOC_DAY')
+            if not day_str:
+                print("Error: Day not provided via CLI argument or AOC_DAY environment variable")
+                print("Usage: python new_day.py <day_number>")
+                print("   or: Set AOC_DAY in .env file to get it automatically incremented")
+                sys.exit(1)
+            day = int(day_str) + 1
+        else:
+            day = int(sys.argv[1])
         if day < 1 or day > 25:
             print("Day must be between 1 and 25")
             sys.exit(1)

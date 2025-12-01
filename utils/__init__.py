@@ -1,18 +1,22 @@
 import re
 
+
 def numbers_from_string(input: str) -> list[int]:
     """Extracts all integers from a given string and returns them as a list."""
-    return list(map(int, re.findall(r'-?\d+', input)))
+    return list(map(int, re.findall(r"-?\d+", input)))
+
 
 def digits_from_string(input: str) -> list[int]:
     """Extracts all single digit integers from a given string and returns them as a list."""
     return [int(char) for char in input if char.isdigit()]
+
 
 def first_and_last_element(input: list) -> tuple:
     """Returns the first and last elements of a list as a tuple."""
     if not input:
         raise ValueError("Input list is empty")
     return (input[0], input[-1])
+
 
 def spelled_out_digit_to_int(input: str) -> int:
     """Converts a spelled-out digit (e.g., 'zero', 'one', ...) to its integer representation."""

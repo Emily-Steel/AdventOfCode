@@ -1,5 +1,7 @@
 from typing import List
+
 from utils import digits_from_string, first_and_last_element
+
 
 def part1(input: List[str]) -> int:
     calibration_values = []
@@ -15,11 +17,13 @@ def part1(input: List[str]) -> int:
         print(" --- ")
     return sum(calibration_values)
 
+
 def main():
     with open("2023/Day1/input.txt") as f:
         part1_input = f.readlines()
     result = part1(part1_input)
     print(f"Part 1: {result}")
+
 
 if __name__ == "__main__":
     main()

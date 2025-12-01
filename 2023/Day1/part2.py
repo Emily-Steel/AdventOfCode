@@ -1,9 +1,8 @@
 from typing import List
+
 from utils import first_and_last_element, spelled_out_digit_to_int
 
-SPELLED_OUT_DIGITS = [
-    "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"
-]
+SPELLED_OUT_DIGITS = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
 
 DIGIT_STATE_MACHINE = {
     "z": {"e": {"r": {"o": "zero"}}},
@@ -14,6 +13,7 @@ DIGIT_STATE_MACHINE = {
     "e": {"i": {"g": {"h": {"t": "eight"}}}},
     "n": {"i": {"n": {"e": "nine"}}},
 }
+
 
 def digits_from_string_including_spelled_out(input: str) -> list[int]:
     digits = []
@@ -47,6 +47,7 @@ def digits_from_string_including_spelled_out(input: str) -> list[int]:
         i += 1
     return digits
 
+
 def part2(input: List[str]) -> int:
     calibration_values = []
     for line in input:
@@ -61,11 +62,13 @@ def part2(input: List[str]) -> int:
         print(" --- ")
     return sum(calibration_values)
 
+
 def main():
     with open("2023/Day1/input.txt") as f:
         part2_input = f.readlines()
     result = part2(part2_input)
     print(f"Part 2: {result}")
+
 
 if __name__ == "__main__":
     main()

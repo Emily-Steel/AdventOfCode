@@ -4,6 +4,7 @@ import sys
 from pathlib import Path
 
 from dotenv import load_dotenv
+import subprocess
 
 # Load environment variables from .env file
 env_path = Path(__file__).parent.parent / ".env"
@@ -51,6 +52,7 @@ def create_day_directory(day: int):
 
     # Get the root directory (parent of tools/)
     root_dir = Path(__file__).parent.parent
+    template_dir = Path(__file__).parent / "day_template"
     day_dir = root_dir / year / f"Day{day}"
 
     if day_dir.exists():
@@ -60,13 +62,37 @@ def create_day_directory(day: int):
     # Create the directory
     day_dir.mkdir(parents=True, exist_ok=True)
 
-    # Create an empty input.txt file
-    for filename in ["example.txt", "input.txt", "part1.py", "part1_test.py"]:
-        file_path = day_dir / filename
-        file_path.touch()
+    # Manually create input.txt (since it's gitignored)
+    input_file = day_dir / "input.txt"
+    input_file.touch()
+    
+    # Copy all files from template directory
+    if template_dir.exists():
+        for template_file in template_dir.iterdir():
+            if template_file.is_file():
+                dest_file = day_dir / template_file.name
+                dest_file.write_text(template_file.read_text())
+    else:
+        print(f"Warning: Template directory {template_dir} does not exist")
 
     print(f"Created directory: {day_dir}")
-    print("Created files: example.txt, input.txt, part1.py, part1_test.py")
+    # Print directory structure
+    try:
+        result = subprocess.run(
+            ["tree", "-L", "1", str(day_dir)],
+            capture_output=True,
+            text=True,
+            timeout=5
+        )
+        if result.returncode == 0:
+            print(result.stdout)
+        else:
+            raise FileNotFoundError
+    except (FileNotFoundError, subprocess.TimeoutExpired):
+        # Fallback to ls or manual listing
+        print(f"\nCreated files in {day_dir.name}:")
+        for file in sorted(day_dir.iterdir()):
+            print(f"  {file.name}")
 
     # Update the .env file with the new day
     env_path = Path(__file__).parent.parent / ".env"

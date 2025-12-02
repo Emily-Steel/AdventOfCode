@@ -1,7 +1,7 @@
 import sys
 from pathlib import Path
 
-SELF_PATH = Path(__file__).relative_to(Path(__file__).resolve().parents[2])
+SELF_PATH = Path(__file__).parent
 
 def part1(input_data):
     return "unimplemented"

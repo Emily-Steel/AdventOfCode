@@ -9,8 +9,8 @@ def part1(input_data):
 def main():
     filename = "example.txt" if "-e" in sys.argv else "input.txt"
     with open(SELF_PATH / filename, "r") as f:
-        part1_input = f.readlines()
-    result = part1(part1_input)
+        day_input = f.readlines()
+    result = part1(day_input)
     print(f"Part 1: {result}")
 
 if __name__ == "__main__":

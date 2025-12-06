@@ -19,26 +19,37 @@ def parse_input(lines):
         i += 1    
     return fresh_ranges, ingredients_to_check
 
-def part1(input_data):
+def part2(input_data):
     fresh_ranges, ingredients_to_check = parse_input(input_data)
-    fresh_ingredients = set()
-    for ingredient in ingredients_to_check:
-        for r in fresh_ranges:
-            if r[0] <= ingredient <= r[1]:
-                fresh_ingredients.add(ingredient)
-                break
-    return len(fresh_ingredients)
+    sorted_ranges = sorted(fresh_ranges, key=lambda x: x[0])
+    merged_ranges = []
+    current = None
+    for r in sorted_ranges:
+        if current is None:
+            current = r
+        else:
+            if r[0] <= current[1] + 1:
+                current = (current[0], max(current[1], r[1]))
+            else:
+                merged_ranges.append(current)
+                current = r
+    if current is not None:
+        merged_ranges.append(current)
+    number_of_fresh_ingredients = 0
+    for r in merged_ranges:
+        number_of_fresh_ingredients += r[1] - r[0] + 1
+    return number_of_fresh_ingredients
 
 def main():
     filename = "example.txt" if "-e" in sys.argv else "input.txt"
     with open(SELF_PATH / filename, "r") as f:
         day_input = f.readlines()
     lines = [line.strip() for line in day_input]
-    result = part1(lines)
-    print(f"Part 1: {result}")
+    result = part2(lines)
+    print(f"Part 2: {result}")
 
 if __name__ == "__main__":
     if "--help" in sys.argv or "-h" in sys.argv:
-        print("Usage: python part1.py [-e] [--help|-h]\n-e : use example input\n--help|-h : show this help message")
+        print("Usage: python part2.py [-e] [--help|-h]\n-e : use example input\n--help|-h : show this help message")
         sys.exit(0)
     main()

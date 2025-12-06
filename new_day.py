@@ -1,0 +1,1 @@
+./tools/new_day.py

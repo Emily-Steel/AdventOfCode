@@ -6,7 +6,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 # Load environment variables from .env file
-env_path = Path(__file__).parent.parent / ".env"
+env_path = Path(__file__).resolve().parent.parent / ".env"
 load_dotenv(dotenv_path=env_path)
 
 
@@ -19,7 +19,7 @@ def copy_part1_to_part2(day: int):
         sys.exit(1)
 
     # Get the root directory (parent of tools/)
-    root_dir = Path(__file__).parent.parent
+    root_dir = Path(__file__).resolve().parent.parent
     day_dir = root_dir / year / f"Day{day}"
 
     part1_file = day_dir / "part1.py"

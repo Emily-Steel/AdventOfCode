@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 import subprocess
 
 # Load environment variables from .env file
-env_path = Path(__file__).parent.parent / ".env"
+env_path = Path(__file__).resolve().parent.parent / ".env"
 load_dotenv(dotenv_path=env_path)
 
 
@@ -51,8 +51,8 @@ def create_day_directory(day: int):
         sys.exit(1)
 
     # Get the root directory (parent of tools/)
-    root_dir = Path(__file__).parent.parent
-    template_dir = Path(__file__).parent / "day_template"
+    root_dir = Path(__file__).resolve().parent.parent
+    template_dir = Path(__file__).resolve().parent / "day_template"
     day_dir = root_dir / year / f"Day{day}"
 
     if day_dir.exists():
@@ -95,7 +95,6 @@ def create_day_directory(day: int):
             print(f"  {file.name}")
 
     # Update the .env file with the new day
-    env_path = Path(__file__).parent.parent / ".env"
     update_env_file(env_path, day)
 
 

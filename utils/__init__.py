@@ -1,4 +1,5 @@
 import re
+from typing import Generator
 
 
 def numbers_from_string(input: str) -> list[int]:
@@ -46,3 +47,10 @@ def spelled_out_digit_to_int(input: str) -> int:
         return mapping[input_lower]
     else:
         raise ValueError(f"Input '{input}' is not a valid spelled-out digit")
+
+def list_all_pairings(first: list, second: list) -> Generator[tuple, None, None]:
+    """Generates all possible pairings between elements of two lists."""
+    for i, point in enumerate(first):
+        for other in second[i+1:]:
+            if point != other:
+                yield (point, other)

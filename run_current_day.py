@@ -29,7 +29,7 @@ def find_latest_part(year: int, day: int) -> str:
     sys.exit(1)
 
 
-def run_solution(year: int, day: int, part: str = None, use_example: bool = False):
+def run_solution(year: int, day: int, part: str = None, use_example: bool = False, debug_print: bool = False):
     """Run the specified solution."""
     day_dir = Path(__file__).resolve().parent / str(year) / f"Day{day}"
     
@@ -48,6 +48,9 @@ def run_solution(year: int, day: int, part: str = None, use_example: bool = Fals
     # Add -e flag if using example
     if use_example:
         cmd.append("-e")
+
+    if debug_print:
+        cmd.append("--debug")
     
     print(f"Running: {' '.join(cmd)}")
     
@@ -66,6 +69,7 @@ def run_solution(year: int, day: int, part: str = None, use_example: bool = Fals
 if __name__ == "__main__":
     # Parse command line arguments
     use_example = False
+    debug_print = False
     part_arg = None
     
     args = sys.argv[1:]
@@ -74,6 +78,8 @@ if __name__ == "__main__":
         arg = args[i]
         if arg == "-e":
             use_example = True
+        elif arg == "--debug":
+            debug_print = True
         elif arg.isdigit() and part_arg is None:
             part_arg = arg
         else:
@@ -105,9 +111,9 @@ if __name__ == "__main__":
             if part not in [1, 2]:
                 print("Error: Part must be 1 or 2")
                 sys.exit(1)
-            run_solution(year, day, str(part), use_example)
+            run_solution(year, day, str(part), use_example, debug_print)
         else:
-            run_solution(year, day, None, use_example)
+            run_solution(year, day, None, use_example, debug_print)
             
     except ValueError:
         print("Error: AOC_YEAR and AOC_DAY must be valid integers")

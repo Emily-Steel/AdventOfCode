@@ -5,6 +5,7 @@ description = "Advent of Code solutions"
 requires-python = ">=3.14"
 dependencies = [
     "python-dotenv>=1.0.0",
+    "tqdm>=4.0.0",
 ]
 
 [build-system]
@@ -42,5 +43,5 @@ indent-style = "space"
 [tool.pytest.ini_options]
 # Find test files anywhere in the repo, colocated with code
 testpaths = ["."]
-python_files = "test_*.py"
+python_files = "*_test.py"
 python_functions = "test_*"
